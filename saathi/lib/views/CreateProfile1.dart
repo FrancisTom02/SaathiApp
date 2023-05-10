@@ -26,7 +26,7 @@ class CreateProfile1 extends StatelessWidget {
                           color: Color.fromRGBO(253, 165, 145, 1), width: 2),
                       borderRadius: BorderRadius.circular(40)),
                   contentPadding: EdgeInsets.all(20.0),
-                  labelText: "*E-Mail",
+                  labelText: "*E-Mail ID",
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
               ),
