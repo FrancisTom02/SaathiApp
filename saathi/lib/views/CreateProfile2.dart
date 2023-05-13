@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:saathi/views/HomePage.dart';
+import 'package:saathi/views/HomePage1.dart';
 
 class CreateProfile2 extends StatelessWidget {
   const CreateProfile2({super.key});
@@ -129,7 +130,7 @@ class CreateProfile2 extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (ctx) => HomePage()));
+                      .push(MaterialPageRoute(builder: (ctx) => HomePage1()));
                 },
                 child: Text('Submit')),
           ],

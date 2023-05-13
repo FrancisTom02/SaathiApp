@@ -1,11 +1,38 @@
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:saathi/Services/auth_services.dart';
 import 'package:saathi/views/CreateProfile1.dart';
 import 'package:saathi/views/HomePage1.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _usernameController = TextEditingController();
+
+  final _passwordController = TextEditingController();
+
+  _loginUser() async {
+    String email = _usernameController.text.trim();
+    String password = _passwordController.text.trim();
+
+    String res = await AuthServices.login(email: email, password: password);
+
+    if (res != "success") {
+      print(res);
+      return;
+    }
+
+    Get.to(HomePage1());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +56,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   TextFormField(
+                    controller: _usernameController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -42,6 +70,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    controller: _passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -64,8 +93,7 @@ class LoginPage extends StatelessWidget {
                             253, 165, 145, 1), // Background color
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (ctx) => HomePage1()));
+                        _loginUser();
                       },
                       child: Text('Submit')),
                   SizedBox(

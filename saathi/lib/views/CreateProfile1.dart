@@ -1,10 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:saathi/views/CreateProfile2.dart';
 
-class CreateProfile1 extends StatelessWidget {
+import '../Services/auth_services.dart';
+import 'HomePage1.dart';
+
+class CreateProfile1 extends StatefulWidget {
   const CreateProfile1({super.key});
+
+  @override
+  State<CreateProfile1> createState() => _CreateProfile1State();
+}
+
+class _CreateProfile1State extends State<CreateProfile1> {
+  final _usernameController2 = TextEditingController();
+
+  final _passwordController2 = TextEditingController();
+
+  _SignUpUser() async {
+    String email = _usernameController2.text.trim();
+    String password = _passwordController2.text.trim();
+
+    String res = await AuthServices.signup(email: email, password: password);
+
+    if (res != "success") {
+      print(res);
+      return;
+    }
+
+    Get.to(CreateProfile2());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +48,7 @@ class CreateProfile1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextFormField(
+                controller: _usernameController2,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -35,6 +64,7 @@ class CreateProfile1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50),
               child: TextFormField(
+                controller: _passwordController2,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
@@ -74,8 +104,7 @@ class CreateProfile1 extends StatelessWidget {
                       Color.fromRGBO(253, 165, 145, 1), // Background color
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx) => CreateProfile2()));
+                  _SignUpUser();
                 },
                 child: Text('Submit')),
             SizedBox(

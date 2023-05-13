@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:stroke_text/stroke_text.dart';
 
 class HomePage1 extends StatelessWidget {
   const HomePage1({super.key});
@@ -155,12 +156,12 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
+                              blurRadius: 7,
                               spreadRadius: 1,
                               blurStyle: BlurStyle.outer)
                         ],
                         borderRadius: BorderRadius.circular(20),
-                        color: Color.fromARGB(136, 83, 79, 78),
+                        color: const Color.fromRGBO(253, 165, 145, 1),
                       ),
                       child: Column(
                         children: [
@@ -179,19 +180,26 @@ class HomePage1 extends StatelessWidget {
                             height: 7,
                           ),
                           SizedBox(
-                            height: 20,
+                            height: 30,
                             width: 150,
-                            child: ElevatedButton(
-                              onPressed: () {},
-                              child: Text('Consultancy'),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.transparent,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10))),
+                            child: StrokeText(
+                              text: 'Consultancy',
+                              textStyle: GoogleFonts.goldman(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(25),
+                            padding: const EdgeInsets.all(20),
                             child: Align(
                               alignment: Alignment.center,
                               child: Text(
@@ -205,23 +213,40 @@ class HomePage1 extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 15,
-                            width: 80,
-                            child: ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
-                                  elevation: 8,
-                                  backgroundColor:
-                                      Colors.white, // Background color
+                            height: 60,
+                            width: 156,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  width: 0,
                                 ),
-                                onPressed: () {},
-                                child: Text(
-                                  'Book Now',
-                                  style: TextStyle(
-                                      color: Colors.black, fontSize: 8),
-                                )),
+                                ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+
+                                      elevation: 0,
+                                      backgroundColor: Color.fromRGBO(
+                                          253, 165, 145, 1), // Background color
+                                    ),
+                                    onPressed: () {},
+                                    child: Text(
+                                      'BOOK NOW',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 13,
+                                          fontWeight: FontWeight.w800),
+                                    )),
+                                IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(Icons.arrow_right_rounded),
+                                  color: Colors.white,
+                                  iconSize: 40,
+                                )
+                              ],
+                            ),
                           )
                         ],
                       ),
@@ -232,8 +257,8 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
-                              spreadRadius: 1,
+                              blurRadius: 7,
+                              spreadRadius: 0.1,
                               blurStyle: BlurStyle.outer)
                         ],
                         borderRadius: BorderRadius.circular(20),
@@ -255,11 +280,18 @@ class HomePage1 extends StatelessWidget {
                           SizedBox(
                             height: 7,
                           ),
-                          Text(
-                            'Counselling',
-                            style: GoogleFonts.goldman(
+                          StrokeText(
+                            text: 'Counselling',
+                            textStyle: GoogleFonts.goldman(
                                 fontSize: 20,
-                                color: Color.fromARGB(255, 66, 65, 65),
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
                                 fontWeight: FontWeight.bold),
                           ),
                           Padding(
@@ -309,12 +341,12 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
+                              blurRadius: 7,
                               spreadRadius: 1,
                               blurStyle: BlurStyle.outer)
                         ],
                         borderRadius: BorderRadius.circular(20),
-                        color: Color.fromARGB(136, 83, 79, 78),
+                        color: const Color.fromRGBO(253, 165, 145, 1),
                       ),
                       child: Column(
                         children: [
@@ -332,11 +364,18 @@ class HomePage1 extends StatelessWidget {
                           SizedBox(
                             height: 7,
                           ),
-                          Text(
-                            'Medical Run',
-                            style: GoogleFonts.goldman(
+                          StrokeText(
+                            text: 'Medical Run',
+                            textStyle: GoogleFonts.goldman(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
                                 fontSize: 20,
-                                color: Color.fromRGBO(50, 50, 50, 1),
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           Padding(
@@ -381,7 +420,7 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
+                              blurRadius: 7,
                               spreadRadius: 1,
                               blurStyle: BlurStyle.outer)
                         ],
@@ -404,11 +443,18 @@ class HomePage1 extends StatelessWidget {
                           SizedBox(
                             height: 7,
                           ),
-                          Text(
-                            'Home Nursing',
-                            style: GoogleFonts.goldman(
+                          StrokeText(
+                            text: 'Home Nursing',
+                            textStyle: GoogleFonts.goldman(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
                                 fontSize: 20,
-                                color: Color.fromARGB(255, 66, 65, 65),
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           Padding(
@@ -458,12 +504,12 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
+                              blurRadius: 7,
                               spreadRadius: 1,
                               blurStyle: BlurStyle.outer)
                         ],
                         borderRadius: BorderRadius.circular(20),
-                        color: Color.fromARGB(136, 83, 79, 78),
+                        color: const Color.fromRGBO(253, 165, 145, 1),
                       ),
                       child: Column(
                         children: [
@@ -481,11 +527,18 @@ class HomePage1 extends StatelessWidget {
                           SizedBox(
                             height: 7,
                           ),
-                          Text(
-                            'Home Service',
-                            style: GoogleFonts.goldman(
+                          StrokeText(
+                            text: 'Home Service',
+                            textStyle: GoogleFonts.goldman(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
                                 fontSize: 20,
-                                color: Color.fromRGBO(50, 50, 50, 1),
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
                           ),
                           Padding(
@@ -530,7 +583,7 @@ class HomePage1 extends StatelessWidget {
                       decoration: BoxDecoration(
                         boxShadow: const [
                           BoxShadow(
-                              blurRadius: 10,
+                              blurRadius: 7,
                               spreadRadius: 1,
                               blurStyle: BlurStyle.outer)
                         ],
@@ -553,12 +606,20 @@ class HomePage1 extends StatelessWidget {
                           SizedBox(
                             height: 7,
                           ),
-                          Text(
-                            'Taxi Service',
-                            style: GoogleFonts.goldman(
+                          StrokeText(
+                            text: 'Taxi Service',
+                            textStyle: GoogleFonts.goldman(
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 5,
+                                    color: Color.fromRGBO(30, 30, 30, 1),
+                                    offset: Offset(2, 4.5),
+                                  ),
+                                ],
                                 fontSize: 20,
-                                color: Color.fromARGB(255, 66, 65, 65),
+                                color: Colors.white,
                                 fontWeight: FontWeight.bold),
+                            strokeWidth: 0.5,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(25),
