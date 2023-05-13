@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Hi Diona!',
+                Text('Hi Francis!',
                     style: GoogleFonts.goldman(
                         fontSize: 40,
                         color: Color.fromRGBO(253, 165, 145, 1),
