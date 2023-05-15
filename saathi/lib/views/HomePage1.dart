@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saathi/Offered_Services/Consultancy_Service.dart';
 import 'package:saathi/Offered_Services/My_Profile.dart';
 import 'package:saathi/Offered_Services/StatusWidget.dart';
 import 'package:stroke_text/stroke_text.dart';
@@ -254,7 +255,9 @@ class HomePage1 extends StatelessWidget {
                                       backgroundColor: const Color.fromRGBO(
                                           253, 165, 145, 1), // Background color
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Get.to(Service_Consultancy());
+                                    },
                                     child: const Text(
                                       'BOOK NOW',
                                       style: TextStyle(
@@ -263,7 +266,9 @@ class HomePage1 extends StatelessWidget {
                                           fontWeight: FontWeight.w800),
                                     )),
                                 IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Service_Consultancy());
+                                  },
                                   icon: const Icon(Icons.arrow_right_rounded),
                                   color: Colors.white,
                                   iconSize: 40,
