@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saathi/Offered_Services/My_Profile.dart';
+import 'package:saathi/Offered_Services/StatusWidget.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class HomePage1 extends StatelessWidget {
@@ -17,11 +21,26 @@ class HomePage1 extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Hi Diona!',
-                    style: GoogleFonts.goldman(
-                        fontSize: 40,
-                        color: Color.fromRGBO(253, 165, 145, 1),
-                        fontWeight: FontWeight.bold)),
+                SizedBox(
+                  height: 100,
+                  width: 300,
+                  child: Align(
+                    alignment: AlignmentDirectional.bottomCenter,
+                    child: StrokeText(
+                        text: 'Hi Diona!',
+                        textStyle: GoogleFonts.goldman(
+                            shadows: [
+                              const Shadow(
+                                blurRadius: 5,
+                                color: Color.fromRGBO(30, 30, 30, 1),
+                                offset: Offset(2, 4.5),
+                              ),
+                            ],
+                            fontSize: 40,
+                            color: const Color.fromRGBO(253, 165, 145, 1),
+                            fontWeight: FontWeight.bold)),
+                  ),
+                ),
                 const Align(
                     alignment: AlignmentDirectional.topEnd,
                     child: Image(image: AssetImage('asset/Banner1.png'))),
@@ -55,89 +74,93 @@ class HomePage1 extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/icons8-home-64.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
-                            primary: Color.fromRGBO(168, 107, 93, 1)),
+                            primary: const Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Home'))
+                        child: const Text('Home'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/update-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
-                            primary: Color.fromRGBO(168, 107, 93, 1)),
-                        onPressed: () {},
-                        child: Text('Status'))
+                            primary: const Color.fromRGBO(168, 107, 93, 1)),
+                        onPressed: () {
+                          Get.to(StatusWidget1());
+                        },
+                        child: const Text('Status'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/profile-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
-                            primary: Color.fromRGBO(168, 107, 93, 1)),
-                        onPressed: () {},
-                        child: Text('Profile'))
+                            primary: const Color.fromRGBO(168, 107, 93, 1)),
+                        onPressed: () {
+                          Get.to(MyProfile());
+                        },
+                        child: const Text('Profile'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/support-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
-                            primary: Color.fromRGBO(168, 107, 93, 1)),
+                            primary: const Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Support'))
+                        child: const Text('Support'))
                   ],
                 )
               ],
@@ -165,7 +188,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -176,7 +199,7 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           SizedBox(
@@ -189,7 +212,7 @@ class HomePage1 extends StatelessWidget {
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -218,7 +241,7 @@ class HomePage1 extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   width: 0,
                                 ),
                                 ElevatedButton(
@@ -228,11 +251,11 @@ class HomePage1 extends StatelessWidget {
                                               BorderRadius.circular(10)),
 
                                       elevation: 0,
-                                      backgroundColor: Color.fromRGBO(
+                                      backgroundColor: const Color.fromRGBO(
                                           253, 165, 145, 1), // Background color
                                     ),
                                     onPressed: () {},
-                                    child: Text(
+                                    child: const Text(
                                       'BOOK NOW',
                                       style: TextStyle(
                                           color: Colors.white,
@@ -241,7 +264,7 @@ class HomePage1 extends StatelessWidget {
                                     )),
                                 IconButton(
                                   onPressed: () {},
-                                  icon: Icon(Icons.arrow_right_rounded),
+                                  icon: const Icon(Icons.arrow_right_rounded),
                                   color: Colors.white,
                                   iconSize: 40,
                                 )
@@ -266,7 +289,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -277,7 +300,7 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           StrokeText(
@@ -286,7 +309,7 @@ class HomePage1 extends StatelessWidget {
                                 fontSize: 20,
                                 color: Colors.white,
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -312,13 +335,14 @@ class HomePage1 extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                                  shadowColor:
+                                      const Color.fromRGBO(253, 165, 145, 1),
                                   elevation: 8,
                                   backgroundColor:
                                       Colors.white, // Background color
                                 ),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Book Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 8),
@@ -329,7 +353,7 @@ class HomePage1 extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -350,7 +374,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -361,14 +385,14 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           StrokeText(
                             text: 'Medical Run',
                             textStyle: GoogleFonts.goldman(
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -399,13 +423,14 @@ class HomePage1 extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                                  shadowColor:
+                                      const Color.fromRGBO(253, 165, 145, 1),
                                   elevation: 8,
                                   backgroundColor:
                                       Colors.white, // Background color
                                 ),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Book Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 8),
@@ -429,7 +454,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -440,14 +465,14 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           StrokeText(
                             text: 'Home Nursing',
                             textStyle: GoogleFonts.goldman(
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -475,13 +500,14 @@ class HomePage1 extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                                  shadowColor:
+                                      const Color.fromRGBO(253, 165, 145, 1),
                                   elevation: 8,
                                   backgroundColor:
                                       Colors.white, // Background color
                                 ),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Book Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 8),
@@ -492,7 +518,7 @@ class HomePage1 extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -513,7 +539,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -524,14 +550,14 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           StrokeText(
                             text: 'Home Service',
                             textStyle: GoogleFonts.goldman(
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -562,13 +588,14 @@ class HomePage1 extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                                  shadowColor:
+                                      const Color.fromRGBO(253, 165, 145, 1),
                                   elevation: 8,
                                   backgroundColor:
                                       Colors.white, // Background color
                                 ),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Book Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 8),
@@ -592,7 +619,7 @@ class HomePage1 extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Container(
@@ -603,14 +630,14 @@ class HomePage1 extends StatelessWidget {
                             height: 92,
                             width: 151,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           StrokeText(
                             text: 'Taxi Service',
                             textStyle: GoogleFonts.goldman(
                                 shadows: [
-                                  Shadow(
+                                  const Shadow(
                                     blurRadius: 5,
                                     color: Color.fromRGBO(30, 30, 30, 1),
                                     offset: Offset(2, 4.5),
@@ -639,13 +666,14 @@ class HomePage1 extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10)),
-                                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                                  shadowColor:
+                                      const Color.fromRGBO(253, 165, 145, 1),
                                   elevation: 8,
                                   backgroundColor:
                                       Colors.white, // Background color
                                 ),
                                 onPressed: () {},
-                                child: Text(
+                                child: const Text(
                                   'Book Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 8),
@@ -656,15 +684,15 @@ class HomePage1 extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
           ])),

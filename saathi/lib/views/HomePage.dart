@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
                 Text('Hi Francis!',
                     style: GoogleFonts.goldman(
                         fontSize: 40,
-                        color: Color.fromRGBO(253, 165, 145, 1),
+                        color: const Color.fromRGBO(253, 165, 145, 1),
                         fontWeight: FontWeight.bold)),
                 const Align(
                     alignment: AlignmentDirectional.topEnd,
@@ -32,84 +32,84 @@ class HomePage extends StatelessWidget {
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/icons8-home-64.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
                             primary: Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Home'))
+                        child: const Text('Home'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/update-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
                             primary: Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Status'))
+                        child: const Text('Status'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/profile-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
                             primary: Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Profile'))
+                        child: const Text('Profile'))
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 ),
                 Column(
                   children: [
-                    CircleAvatar(
+                    const CircleAvatar(
                       radius: 25,
                       backgroundColor: Colors.white,
                       foregroundImage: AssetImage('asset/support-icon.png'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 1,
                     ),
                     TextButton(
                         style: TextButton.styleFrom(
                             primary: Color.fromRGBO(168, 107, 93, 1)),
                         onPressed: () {},
-                        child: Text('Support'))
+                        child: const Text('Support'))
                   ],
                 )
               ],
@@ -163,12 +163,12 @@ class HomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                        shadowColor: const Color.fromRGBO(253, 165, 145, 1),
                         elevation: 8,
                         backgroundColor: Colors.white, // Background color
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Book Now',
                         style: TextStyle(color: Colors.black),
                       ))
@@ -183,8 +183,8 @@ class HomePage extends StatelessWidget {
               width: 350,
               alignment: Alignment.topCenter,
               decoration: BoxDecoration(
-                boxShadow: [
-                  const BoxShadow(
+                boxShadow: const [
+                  BoxShadow(
                       blurRadius: 10,
                       spreadRadius: 1,
                       blurStyle: BlurStyle.outer)
@@ -225,12 +225,12 @@ Our volunteers can do it for you!''',
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                        shadowColor: const Color.fromRGBO(253, 165, 145, 1),
                         elevation: 8,
                         backgroundColor: Colors.white, // Background color
                       ),
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         'Book Now',
                         style: TextStyle(color: Colors.black),
                       ))
