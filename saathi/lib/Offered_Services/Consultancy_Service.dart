@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saathi/Offered_Services/Consultancy_Service2.dart';
 import 'package:saathi/views/HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -23,9 +24,9 @@ class Service_Consultancy extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {
-                        Get.to(HomePage1());
+                        Get.to(const HomePage1());
                       },
-                      icon: Icon(Icons.keyboard_double_arrow_left)),
+                      icon: const Icon(Icons.arrow_back)),
                   const Align(
                       alignment: AlignmentDirectional.topEnd,
                       child: Image(image: AssetImage('asset/Banner1.png'))),
@@ -59,13 +60,13 @@ class Service_Consultancy extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 220,
+                    height: 200,
                     width: 350,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -81,9 +82,9 @@ class Service_Consultancy extends StatelessWidget {
                                   height: 130,
                                   width: 120,
                                   decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage('asset/Francis.png')),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'asset/Team/Francis.png')),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(100),
                                       color: Colors.white30),
@@ -123,7 +124,8 @@ class Service_Consultancy extends StatelessWidget {
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(197, 255, 255, 255),
+                                    color: const Color.fromARGB(
+                                        197, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(35)),
                               ),
                               const SizedBox(
@@ -131,26 +133,28 @@ class Service_Consultancy extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)),
+                          Align(
+                            alignment: AlignmentDirectional.topEnd,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
 
-                                elevation: 0,
-                                backgroundColor: Color.fromARGB(
-                                    255, 255, 255, 255), // Background color
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                'BOOK NOW',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w800),
-                              ))
+                                  elevation: 0,
+                                  backgroundColor: const Color.fromARGB(
+                                      255, 255, 255, 255), // Background color
+                                ),
+                                onPressed: () {
+                                  Get.to(Service_Consultancy2());
+                                },
+                                child: const Text(
+                                  'BOOK NOW',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w800),
+                                )),
+                          )
                         ],
                       ),
                     ),
@@ -165,17 +169,17 @@ class Service_Consultancy extends StatelessWidget {
                       color: const Color.fromRGBO(253, 165, 145, 1),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
-                    height: 220,
+                    height: 200,
                     width: 350,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -191,8 +195,9 @@ class Service_Consultancy extends StatelessWidget {
                                   height: 130,
                                   width: 120,
                                   decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage('asset/Diona.png')),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'asset/Team/Diona.png')),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(100),
                                       color: Colors.white30),
@@ -232,7 +237,8 @@ class Service_Consultancy extends StatelessWidget {
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(197, 255, 255, 255),
+                                    color: const Color.fromARGB(
+                                        197, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(35)),
                               ),
                               const SizedBox(
@@ -240,26 +246,26 @@ class Service_Consultancy extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(50)),
+                          Align(
+                            alignment: AlignmentDirectional.topEnd,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50)),
 
-                                elevation: 0,
-                                backgroundColor: Color.fromARGB(
-                                    255, 255, 255, 255), // Background color
-                              ),
-                              onPressed: () {},
-                              child: const Text(
-                                'BOOK NOW',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w800),
-                              ))
+                                  elevation: 0,
+                                  backgroundColor: const Color.fromARGB(
+                                      255, 255, 255, 255), // Background color
+                                ),
+                                onPressed: () {},
+                                child: const Text(
+                                  'BOOK NOW',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w800),
+                                )),
+                          )
                         ],
                       ),
                     ),
@@ -274,17 +280,17 @@ class Service_Consultancy extends StatelessWidget {
                       color: const Color.fromRGBO(253, 165, 145, 1),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
-                    height: 220,
+                    height: 200,
                     width: 350,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
                         children: [
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -300,16 +306,13 @@ class Service_Consultancy extends StatelessWidget {
                                   height: 130,
                                   width: 120,
                                   decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image:
-                                              AssetImage('asset/Jithin.png')),
+                                      image: const DecorationImage(
+                                          image: AssetImage(
+                                              'asset/Team/Jithin.png')),
                                       borderRadius:
                                           BorderRadiusDirectional.circular(100),
                                       color: Colors.white30),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 20,
                               ),
                               Container(
                                 height: 100,
@@ -342,16 +345,14 @@ class Service_Consultancy extends StatelessWidget {
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                    color: Color.fromARGB(197, 255, 255, 255),
+                                    color: const Color.fromARGB(
+                                        197, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(35)),
                               ),
                               const SizedBox(
                                 height: 30,
                               ),
                             ],
-                          ),
-                          SizedBox(
-                            height: 5,
                           ),
                           Align(
                             alignment: AlignmentDirectional.bottomEnd,
@@ -361,7 +362,7 @@ class Service_Consultancy extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(50)),
 
                                   elevation: 0,
-                                  backgroundColor: Color.fromARGB(
+                                  backgroundColor: const Color.fromARGB(
                                       255, 255, 255, 255), // Background color
                                 ),
                                 onPressed: () {},
@@ -387,10 +388,10 @@ class Service_Consultancy extends StatelessWidget {
                       color: const Color.fromRGBO(253, 165, 145, 1),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                 ],

@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -27,18 +29,18 @@ class MyProfile extends StatelessWidget {
                     width: 20,
                   ),
                   SizedBox(
-                    height: 80,
+                    height: 100,
                     width: 200,
                     child: Align(
-                      alignment: AlignmentDirectional.bottomCenter,
+                      alignment: AlignmentDirectional.center,
                       child: StrokeText(
-                          text: 'Status',
+                          text: 'My Profile',
                           textStyle: GoogleFonts.goldman(
-                              fontSize: 40,
+                              fontSize: 35,
                               shadows: [
                                 const Shadow(
                                   blurRadius: 5,
-                                  color: Color.fromRGBO(30, 30, 30, 1),
+                                  color: Color.fromRGBO(59, 58, 58, 1),
                                   offset: Offset(2, 4.5),
                                 ),
                               ],
@@ -170,7 +172,7 @@ class MyProfile extends StatelessWidget {
                           borderRadius: BorderRadius.circular(100),
                           color: Colors.white60,
                           image: DecorationImage(
-                              image: AssetImage('asset/Francis.png'))),
+                              image: AssetImage('asset/Team/Francis.png'))),
                     ),
                     SizedBox(
                       height: 15,
@@ -441,6 +443,9 @@ class MyProfile extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 40,
+              )
             ],
           ),
         ),

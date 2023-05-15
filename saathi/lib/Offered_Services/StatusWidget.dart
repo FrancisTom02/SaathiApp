@@ -37,7 +37,7 @@ class StatusWidget1 extends StatelessWidget {
                               shadows: [
                                 const Shadow(
                                   blurRadius: 5,
-                                  color: Color.fromRGBO(30, 30, 30, 1),
+                                  color: Color.fromRGBO(59, 58, 58, 1),
                                   offset: Offset(2, 4.5),
                                 ),
                               ],
