@@ -6,7 +6,8 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Offered_Services/Consultancy_Service.dart';
 import 'package:saathi/Offered_Services/My_Profile.dart';
-import 'package:saathi/Offered_Services/StatusWidget.dart';
+import 'package:saathi/Offered_Services/Status_Widget.dart';
+import 'package:saathi/Offered_Services/Support_Widget.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class HomePage1 extends StatelessWidget {
@@ -171,7 +172,9 @@ class HomePage1 extends StatelessWidget {
                       TextButton(
                           style: TextButton.styleFrom(
                               primary: const Color.fromRGBO(168, 107, 93, 1)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(SupportWidget());
+                          },
                           child: const Text('Support'))
                     ],
                   )

@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../views/HomePage1.dart';
-import 'StatusWidget.dart';
+import 'Status_Widget.dart';
 
 class MyProfile extends StatelessWidget {
   const MyProfile({super.key});
