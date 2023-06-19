@@ -1,18 +1,71 @@
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:saathi/Offered_Services/My_Profile_Edit.dart';
+import 'package:saathi/Offered_Services/Support_Widget.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../views/HomePage1.dart';
 import 'Status_Widget.dart';
 
-class MyProfile extends StatelessWidget {
+class MyProfile extends StatefulWidget {
   const MyProfile({super.key});
+
+  @override
+  State<MyProfile> createState() => _MyProfileState();
+}
+
+class _MyProfileState extends State<MyProfile> {
+  get secureStorage => null;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getdoctor();
+  }
+
+  TextEditingController name = TextEditingController();
+  TextEditingController adharnumber = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController phone = TextEditingController();
+
+  TextEditingController guardianName = TextEditingController();
+  TextEditingController guardianRelation = TextEditingController();
+  TextEditingController guardianEmail = TextEditingController();
+  TextEditingController guardianPhone = TextEditingController();
+
+  getdoctor() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('user')
+        .doc('cDej3gBIdjg5jfO3D58KRxJTRkA2')
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+      adharnumber.text = (snap.data() as Map<String, dynamic>)['adharnumber'];
+      email.text = (snap.data() as Map<String, dynamic>)['email'];
+      age.text = (snap.data() as Map<String, dynamic>)['age'];
+      address.text = (snap.data() as Map<String, dynamic>)['address'];
+      phone.text = (snap.data() as Map<String, dynamic>)['phonenumber'];
+
+      guardianEmail.text =
+          (snap.data() as Map<String, dynamic>)['guardianEmail'];
+      guardianName.text = (snap.data() as Map<String, dynamic>)['guardianName'];
+      guardianPhone.text =
+          (snap.data() as Map<String, dynamic>)['guardianPhone'];
+      guardianRelation.text =
+          (snap.data() as Map<String, dynamic>)['guardianRelation'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,7 +191,9 @@ class MyProfile extends StatelessWidget {
                       TextButton(
                           style: TextButton.styleFrom(
                               primary: const Color.fromRGBO(168, 107, 93, 1)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(SupportWidget());
+                          },
                           child: const Text('Support'))
                     ],
                   )
@@ -148,7 +203,7 @@ class MyProfile extends StatelessWidget {
                 height: 50,
               ),
               Container(
-                height: 1000,
+                height: 1200,
                 width: 400,
                 decoration: BoxDecoration(
                   boxShadow: const [
@@ -178,7 +233,7 @@ class MyProfile extends StatelessWidget {
                       height: 15,
                     ),
                     StrokeText(
-                      text: 'Mr. FRANCIS TOM',
+                      text: name.text,
                       textStyle: GoogleFonts.goldman(shadows: [
                         const Shadow(
                           blurRadius: 5,
@@ -199,18 +254,18 @@ class MyProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               StrokeText(
-                                text: 'Personal Id :',
+                                text: 'Adhar No :',
                                 textStyle: GoogleFonts.goldman(fontSize: 20),
                               ),
                               Container(
                                 width: 200,
                                 height: 30,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('4522178')),
+                                    child: Text(adharnumber.text)),
                               )
                             ],
                           )
@@ -240,7 +295,7 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('francistom04@gmail.com')),
+                                    child: Text(email.text)),
                               )
                             ],
                           )
@@ -270,7 +325,7 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('+91-9562026130')),
+                                    child: Text(phone.text)),
                               )
                             ],
                           )
@@ -289,7 +344,7 @@ class MyProfile extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               StrokeText(
-                                text: 'D.o.B :',
+                                text: 'Age :',
                                 textStyle: GoogleFonts.goldman(fontSize: 20),
                               ),
                               Container(
@@ -300,7 +355,40 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('04.10.2002')),
+                                    child: Text(age.text)),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      height: 80,
+                      width: 350,
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              StrokeText(
+                                text: 'Address',
+                                textStyle: GoogleFonts.goldman(fontSize: 20),
+                              ),
+                              Container(
+                                width: 200,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Align(
+                                    alignment: AlignmentDirectional.center,
+                                    child: Text(address.text)),
                               )
                             ],
                           ),
@@ -343,7 +431,7 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('Rogin Roy')),
+                                    child: Text(guardianName.text)),
                               )
                             ],
                           )
@@ -373,7 +461,7 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('Brother')),
+                                    child: Text(guardianRelation.text)),
                               )
                             ],
                           )
@@ -403,7 +491,7 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('+91-8891230510')),
+                                    child: Text(guardianPhone.text)),
                               )
                             ],
                           )
@@ -433,13 +521,45 @@ class MyProfile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text('roginroy@gmail.com')),
+                                    child: Text(guardianEmail.text)),
                               )
                             ],
                           )
                         ],
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    SizedBox(
+                      height: 40,
+                      width: 150,
+                      child: Container(
+                        decoration: BoxDecoration(color: Colors.white),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                shadowColor: Color.fromARGB(255, 255, 255, 255),
+                                elevation: 8,
+                                backgroundColor: const Color.fromRGBO(
+                                    253, 165, 145, 1), // Background color
+                              ),
+                              onPressed: () {
+                                Get.to(MyProfileEdit());
+                              },
+                              child: const StrokeText(
+                                strokeWidth: 1.5,
+                                text: 'Edit Profile',
+                                textStyle: TextStyle(
+                                    color: Color.fromARGB(255, 255, 255, 255),
+                                    fontSize: 16),
+                              )),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

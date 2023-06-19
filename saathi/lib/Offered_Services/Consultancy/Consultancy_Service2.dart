@@ -4,9 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:saathi/Offered_Services/Consultancy_Service.dart';
-import 'package:saathi/Offered_Services/Consultancy_Service3.dart';
+
 import 'package:stroke_text/stroke_text.dart';
+
+import 'Consultancy_Service.dart';
+import 'Consultancy_Service3.dart';
 
 class Service_Consultancy2 extends StatelessWidget {
   const Service_Consultancy2({super.key});

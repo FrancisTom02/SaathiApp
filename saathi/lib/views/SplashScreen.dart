@@ -35,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> LoadingPage(BuildContext context) async {
-    await Future.delayed(Duration(seconds: 10));
+    await Future.delayed(Duration(seconds: 4));
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (ctx) => LoginPage()));
   }

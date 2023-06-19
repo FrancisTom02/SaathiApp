@@ -16,15 +16,26 @@ class CreateProfile1 extends StatefulWidget {
 }
 
 class _CreateProfile1State extends State<CreateProfile1> {
-  final _usernameController2 = TextEditingController();
+  final usernameController2 = TextEditingController();
 
-  final _passwordController2 = TextEditingController();
+  final passwordController2 = TextEditingController();
+
+  int flag = 1;
+
+  _CreateProfile1State() {
+    valuechoose = selectList[0];
+  }
+
+  List selectList = ['USER', 'VOLUNTEER'];
+  String? valuechoose;
 
   _SignUpUser() async {
-    String email = _usernameController2.text.trim();
-    String password = _passwordController2.text.trim();
+    String email = usernameController2.text.trim();
+    String password = passwordController2.text.trim();
+    String role = valuechoose.toString();
 
-    String res = await AuthServices.signup(email: email, password: password);
+    String res = await AuthServices.signup(
+        email: email, password: password, value: flag, role: role);
 
     if (res != "success") {
       print(res);
@@ -37,95 +48,134 @@ class _CreateProfile1State extends State<CreateProfile1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Column(
-          children: [
-            Align(
-                alignment: AlignmentDirectional.topEnd,
-                child: Image(image: AssetImage('asset/Banner1.png'))),
-            SizedBox(height: 150),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextFormField(
-                controller: _usernameController2,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromRGBO(253, 165, 145, 1), width: 2),
-                      borderRadius: BorderRadius.circular(40)),
-                  contentPadding: EdgeInsets.all(20.0),
-                  labelText: "*E-Mail ID",
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Column(
+            children: [
+              Align(
+                  alignment: AlignmentDirectional.topEnd,
+                  child: Image(image: AssetImage('asset/Banner1.png'))),
+              SizedBox(height: 150),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: DropdownButtonFormField(
+                    decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Color.fromRGBO(253, 165, 145, 1),
+                              width: 2),
+                          borderRadius: BorderRadius.circular(40)),
+                      contentPadding: EdgeInsets.all(20.0),
+                      labelText: "SELECT",
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                    ),
+                    value: valuechoose,
+                    onTap: () {},
+                    items: selectList
+                        .map((e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        valuechoose = value as String;
+                      });
+                      if (value == "USER") {
+                        flag = 1;
+                      } else {
+                        flag = 0;
+                      }
+                    }),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: TextFormField(
+                  controller: usernameController2,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromRGBO(253, 165, 145, 1), width: 2),
+                        borderRadius: BorderRadius.circular(40)),
+                    contentPadding: EdgeInsets.all(20.0),
+                    labelText: "*E-Mail ID",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextFormField(
-                controller: _passwordController2,
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromRGBO(253, 165, 145, 1), width: 2),
-                      borderRadius: BorderRadius.circular(40)),
-                  contentPadding: EdgeInsets.all(20.0),
-                  labelText: "*Password",
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: TextFormField(
+                  obscureText: true,
+                  controller: passwordController2,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromRGBO(253, 165, 145, 1), width: 2),
+                        borderRadius: BorderRadius.circular(40)),
+                    contentPadding: EdgeInsets.all(20.0),
+                    labelText: "*Password",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 50),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromRGBO(253, 165, 145, 1), width: 2),
-                      borderRadius: BorderRadius.circular(40)),
-                  contentPadding: EdgeInsets.all(20.0),
-                  labelText: "*Re-Enter Password",
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
+              SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50),
+                child: TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromRGBO(253, 165, 145, 1), width: 2),
+                        borderRadius: BorderRadius.circular(40)),
+                    contentPadding: EdgeInsets.all(20.0),
+                    labelText: "*Re-Enter Password",
+                    floatingLabelBehavior: FloatingLabelBehavior.always,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 60,
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  shadowColor: Color.fromRGBO(253, 165, 145, 1),
-                  elevation: 8,
-                  backgroundColor:
-                      Color.fromRGBO(253, 165, 145, 1), // Background color
-                ),
-                onPressed: () {
-                  _SignUpUser();
-                },
-                child: Text('Submit')),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Already registered?'),
-                TextButton(
-                    style: TextButton.styleFrom(
-                        primary: Color.fromRGBO(253, 165, 145, 1)),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Text(
-                      'Sign in',
-                    ))
-              ],
-            )
-          ],
+              SizedBox(
+                height: 60,
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    shadowColor: Color.fromRGBO(253, 165, 145, 1),
+                    elevation: 8,
+                    backgroundColor:
+                        Color.fromRGBO(253, 165, 145, 1), // Background color
+                  ),
+                  onPressed: () {
+                    _SignUpUser();
+                  },
+                  child: Text('Submit')),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Already registered?'),
+                  TextButton(
+                      style: TextButton.styleFrom(
+                          primary: Color.fromRGBO(253, 165, 145, 1)),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: Text(
+                        'Sign in',
+                      ))
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Offered_Services/My_Profile.dart';
+import 'package:saathi/Offered_Services/Support_Widget.dart';
 import 'package:saathi/views/HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -137,7 +138,9 @@ class StatusWidget1 extends StatelessWidget {
                       TextButton(
                           style: TextButton.styleFrom(
                               primary: const Color.fromRGBO(168, 107, 93, 1)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(SupportWidget());
+                          },
                           child: const Text('Support'))
                     ],
                   )

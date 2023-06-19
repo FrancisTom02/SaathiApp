@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Services/auth_services.dart';
+import 'package:saathi/Volunteer/Volunteer_HomePage1.dart';
 import 'package:saathi/views/CreateProfile1.dart';
 import 'package:saathi/views/HomePage1.dart';
 
@@ -24,14 +26,42 @@ class _LoginPageState extends State<LoginPage> {
     String email = _usernameController.text.trim();
     String password = _passwordController.text.trim();
 
-    String res = await AuthServices.login(email: email, password: password);
+    final role = await AuthServices.login(email: email, password: password);
 
-    if (res != "success") {
-      print(res);
+    // if (res != "success") {
+    //   print(res);
+    //   return;
+    // }
+
+    // Get.to(VolunteerHomePage1());
+    if (role != "USER" && role != "VOLUNTEER") {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        content: Text(
+          'Invalid Username or Password',
+          style: GoogleFonts.raleway(fontSize: 15, fontWeight: FontWeight.w600),
+        ),
+        backgroundColor: Colors.red,
+        duration: const Duration(seconds: 3),
+      ));
       return;
     }
-
-    Get.to(HomePage1());
+    Widget? page;
+    switch (role.toUpperCase()) {
+      case 'USER':
+        page = const HomePage1();
+        break;
+      case 'VOLUNTEER':
+        page = VolunteerHomePage1();
+        break;
+      default:
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(role)));
+    }
+    if (page != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (ctx2) => page!));
+    }
   }
 
   @override
@@ -70,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20),
                   TextFormField(
+                    obscureText: true,
                     controller: _passwordController,
                     decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(

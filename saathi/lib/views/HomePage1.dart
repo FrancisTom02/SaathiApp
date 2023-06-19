@@ -4,11 +4,17 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:saathi/Offered_Services/Consultancy_Service.dart';
+import 'package:saathi/Offered_Services/Counselling/Counselling_Service.dart';
+import 'package:saathi/Offered_Services/Home_Nursing/HomeNursing_Service.dart';
+import 'package:saathi/Offered_Services/Home_Service/HomeService_Service.dart';
+import 'package:saathi/Offered_Services/Medical_Run/Medical_Run_Service.dart';
 import 'package:saathi/Offered_Services/My_Profile.dart';
 import 'package:saathi/Offered_Services/Status_Widget.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
+import 'package:saathi/Offered_Services/Taxi_Service/Taxi_Service.dart';
 import 'package:stroke_text/stroke_text.dart';
+
+import '../Offered_Services/Consultancy/Consultancy_Service.dart';
 
 class HomePage1 extends StatelessWidget {
   const HomePage1({super.key});
@@ -38,7 +44,7 @@ class HomePage1 extends StatelessWidget {
                         Align(
                           alignment: AlignmentDirectional.bottomCenter,
                           child: StrokeText(
-                              text: 'Hi Diona!',
+                              text: 'Hi Francis!',
                               textStyle: GoogleFonts.goldman(
                                   shadows: [
                                     const Shadow(
@@ -47,7 +53,7 @@ class HomePage1 extends StatelessWidget {
                                       offset: Offset(2, 4.5),
                                     ),
                                   ],
-                                  fontSize: 40,
+                                  fontSize: 35,
                                   color: const Color.fromRGBO(253, 165, 145, 1),
                                   fontWeight: FontWeight.bold)),
                         ),
@@ -100,7 +106,8 @@ class HomePage1 extends StatelessWidget {
                       const CircleAvatar(
                         radius: 25,
                         backgroundColor: Colors.white,
-                        foregroundImage: AssetImage('asset/icons8-home-64.png'),
+                        foregroundImage:
+                            AssetImage('asset/widget/icons8-home-64.png'),
                       ),
                       const SizedBox(
                         height: 1,
@@ -120,7 +127,8 @@ class HomePage1 extends StatelessWidget {
                       const CircleAvatar(
                         radius: 25,
                         backgroundColor: Colors.white,
-                        foregroundImage: AssetImage('asset/update-icon.png'),
+                        foregroundImage:
+                            AssetImage('asset/widget/update-icon.png'),
                       ),
                       const SizedBox(
                         height: 1,
@@ -142,7 +150,8 @@ class HomePage1 extends StatelessWidget {
                       const CircleAvatar(
                         radius: 25,
                         backgroundColor: Colors.white,
-                        foregroundImage: AssetImage('asset/profile-icon.png'),
+                        foregroundImage:
+                            AssetImage('asset/widget/profile-icon.png'),
                       ),
                       const SizedBox(
                         height: 1,
@@ -164,7 +173,8 @@ class HomePage1 extends StatelessWidget {
                       const CircleAvatar(
                         radius: 25,
                         backgroundColor: Colors.white,
-                        foregroundImage: AssetImage('asset/support-icon.png'),
+                        foregroundImage:
+                            AssetImage('asset/widget/support-icon.png'),
                       ),
                       const SizedBox(
                         height: 1,
@@ -203,8 +213,25 @@ class HomePage1 extends StatelessWidget {
                         ),
                         child: Column(
                           children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
+                                  color: Colors.white60,
+                                  image: const DecorationImage(
+                                      image: AssetImage(
+                                          'asset/consultants/consultant5.png')),
+                                  borderRadius: BorderRadius.circular(50)),
+                              height: 100,
+                              width: 151,
+                            ),
                             SizedBox(
-                              height: 20,
+                              height: 10,
                             ),
                             SizedBox(
                               height: 30,
@@ -225,18 +252,6 @@ class HomePage1 extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white60,
-                                  image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
-                                  borderRadius: BorderRadius.circular(50)),
-                              height: 92,
-                              width: 151,
-                            ),
                             Padding(
                               padding: const EdgeInsets.all(20),
                               child: Align(
@@ -252,45 +267,38 @@ class HomePage1 extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: 57,
+                              height: 47,
                               width: 156,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const SizedBox(
                                     width: 0,
                                   ),
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-
-                                        elevation: 0,
-                                        backgroundColor: const Color.fromRGBO(
-                                            253,
-                                            165,
-                                            145,
-                                            1), // Background color
-                                      ),
-                                      onPressed: () {
-                                        Get.to(Service_Consultancy());
-                                      },
-                                      child: const Text(
-                                        'BOOK NOW',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 13,
-                                            fontWeight: FontWeight.w800),
-                                      )),
-                                  IconButton(
-                                    onPressed: () {
-                                      Get.to(Service_Consultancy());
-                                    },
-                                    icon: const Icon(Icons.arrow_right_rounded),
-                                    color: Colors.white,
-                                    iconSize: 40,
-                                  )
+                                  SizedBox(
+                                    height: 20,
+                                    width: 100,
+                                    child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          shadowColor: const Color.fromRGBO(
+                                              253, 165, 145, 1),
+                                          elevation: 8,
+                                          backgroundColor:
+                                              Colors.white, // Background color
+                                        ),
+                                        onPressed: () {
+                                          Get.to(Service_Consultancy());
+                                        },
+                                        child: const Text(
+                                          'Book Now',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 12),
+                                        )),
+                                  ),
                                 ],
                               ),
                             )
@@ -313,7 +321,24 @@ class HomePage1 extends StatelessWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 20,
+                              height: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
+                                  color: Colors.white60,
+                                  image: const DecorationImage(
+                                      image: AssetImage(
+                                          'asset/consultants/counsel1.png')),
+                                  borderRadius: BorderRadius.circular(50)),
+                              height: 100,
+                              width: 151,
+                            ),
+                            SizedBox(
+                              height: 10,
                             ),
                             StrokeText(
                               text: 'Counselling',
@@ -328,21 +353,6 @@ class HomePage1 extends StatelessWidget {
                                     ),
                                   ],
                                   fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white60,
-                                  image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
-                                  borderRadius: BorderRadius.circular(50)),
-                              height: 92,
-                              width: 151,
-                            ),
-                            const SizedBox(
-                              height: 7,
                             ),
                             Padding(
                               padding: const EdgeInsets.all(25),
@@ -369,7 +379,9 @@ class HomePage1 extends StatelessWidget {
                                     backgroundColor:
                                         Colors.white, // Background color
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Service_Counselling());
+                                  },
                                   child: const Text(
                                     'Book Now',
                                     style: TextStyle(
@@ -407,11 +419,16 @@ class HomePage1 extends StatelessWidget {
                             ),
                             Container(
                               decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                   color: Colors.white60,
                                   image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
+                                      image: AssetImage(
+                                          'asset/Medical_Run/youth1.png')),
                                   borderRadius: BorderRadius.circular(50)),
-                              height: 92,
+                              height: 100,
                               width: 151,
                             ),
                             const SizedBox(
@@ -459,7 +476,9 @@ class HomePage1 extends StatelessWidget {
                                     backgroundColor:
                                         Colors.white, // Background color
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(MedicalRun());
+                                  },
                                   child: const Text(
                                     'Book Now',
                                     style: TextStyle(
@@ -489,11 +508,16 @@ class HomePage1 extends StatelessWidget {
                             ),
                             Container(
                               decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                   color: Colors.white60,
                                   image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
+                                      image:
+                                          AssetImage('asset/Nurse/nurse3.png')),
                                   borderRadius: BorderRadius.circular(50)),
-                              height: 92,
+                              height: 100,
                               width: 151,
                             ),
                             const SizedBox(
@@ -538,7 +562,9 @@ class HomePage1 extends StatelessWidget {
                                     backgroundColor:
                                         Colors.white, // Background color
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Service_HomeNursing());
+                                  },
                                   child: const Text(
                                     'Book Now',
                                     style: TextStyle(
@@ -576,11 +602,16 @@ class HomePage1 extends StatelessWidget {
                             ),
                             Container(
                               decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                   color: Colors.white60,
                                   image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
+                                      image: AssetImage(
+                                          'asset/Electricians/elec1.png')),
                                   borderRadius: BorderRadius.circular(50)),
-                              height: 92,
+                              height: 100,
                               width: 151,
                             ),
                             const SizedBox(
@@ -628,7 +659,9 @@ class HomePage1 extends StatelessWidget {
                                     backgroundColor:
                                         Colors.white, // Background color
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Service_HomeService());
+                                  },
                                   child: const Text(
                                     'Book Now',
                                     style: TextStyle(
@@ -658,11 +691,16 @@ class HomePage1 extends StatelessWidget {
                             ),
                             Container(
                               decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 2,
+                                      color:
+                                          Color.fromARGB(255, 255, 255, 255)),
                                   color: Colors.white60,
                                   image: const DecorationImage(
-                                      image: AssetImage('asset/doc2.png')),
+                                      image: AssetImage(
+                                          'asset/Taxi_Drivers/driver3.png')),
                                   borderRadius: BorderRadius.circular(50)),
-                              height: 92,
+                              height: 100,
                               width: 151,
                             ),
                             const SizedBox(
@@ -708,7 +746,9 @@ class HomePage1 extends StatelessWidget {
                                     backgroundColor:
                                         Colors.white, // Background color
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.to(Service_Taxi());
+                                  },
                                   child: const Text(
                                     'Book Now',
                                     style: TextStyle(
