@@ -15,14 +15,18 @@ import 'package:saathi/Offered_Services/Status_Widget.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
 import 'package:saathi/Offered_Services/Taxi_Service/Taxi_Service.dart';
 import 'package:saathi/Volunteer/Consultancy/JoinServicePage.dart';
+import 'package:saathi/Volunteer/Consultancy/ServiceHome.dart';
 import 'package:saathi/Volunteer/Counselling/JoinServicePage.dart';
 import 'package:saathi/Volunteer/Counselling/ServiceDetails.dart';
+import 'package:saathi/Volunteer/Counselling/ServiceHome.dart';
 import 'package:saathi/Volunteer/HomeNursing/JoinServicePage.dart';
 import 'package:saathi/Volunteer/HomeNursing/ServiceDetails.dart';
+import 'package:saathi/Volunteer/HomeNursing/ServiceHome.dart';
 import 'package:saathi/Volunteer/HomeService/JoinServicePage.dart';
 import 'package:saathi/Volunteer/MedicalRun/JoinServicePage.dart';
 import 'package:saathi/Volunteer/MyProfile1.dart';
 import 'package:saathi/Volunteer/TaxiService/JoinServicePage.dart';
+import 'package:saathi/Volunteer/TaxiService/ServiceHome.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../Offered_Services/Consultancy/Consultancy_Service.dart';
@@ -45,7 +49,7 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
     if (querySnapshot.size == 0) {
       Get.to(JoinServiceConsultancy());
     } else {
-      Get.to(JoinServiceConsultancy());
+      Get.to(ConsultancyServicePage1());
     }
   }
 
@@ -59,7 +63,7 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
     if (querySnapshot.size == 0) {
       Get.to(JoinServiceCounselling());
     } else {
-      Get.to(CounselingDetails());
+      Get.to(CounsellingServicePage1());
     }
   }
 
@@ -73,7 +77,7 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
     if (querySnapshot.size == 0) {
       Get.to(JoinServiceHomeNursing());
     } else {
-      Get.to(HomeNursingDetails());
+      Get.to(HomeNursingPage1());
     }
   }
 
@@ -87,7 +91,7 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
     if (querySnapshot.size == 0) {
       Get.to(JoinServiceTaxiService());
     } else {
-      Get.to(JoinServiceTaxiService());
+      Get.to(TaxiServicePage1());
     }
   }
 
@@ -670,7 +674,9 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
                           height: 50,
                           width: 300,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              checkhomeservice();
+                            },
                             child: StrokeText(
                               text: 'Home Service',
                               textStyle: GoogleFonts.goldman(

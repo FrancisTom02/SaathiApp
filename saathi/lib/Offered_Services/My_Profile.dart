@@ -25,15 +25,8 @@ class MyProfile extends StatefulWidget {
 class _MyProfileState extends State<MyProfile> {
   get secureStorage => null;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getdoctor();
-  }
-
   TextEditingController name = TextEditingController();
-  TextEditingController adharnumber = TextEditingController();
+  // TextEditingController adharnumber = TextEditingController();
   TextEditingController email = TextEditingController();
   TextEditingController age = TextEditingController();
   TextEditingController address = TextEditingController();
@@ -44,15 +37,23 @@ class _MyProfileState extends State<MyProfile> {
   TextEditingController guardianEmail = TextEditingController();
   TextEditingController guardianPhone = TextEditingController();
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    getdoctor();
+    super.initState();
+  }
+
   getdoctor() async {
     DocumentSnapshot snap = await FirebaseFirestore.instance
-        .collection('user')
-        .doc('cDej3gBIdjg5jfO3D58KRxJTRkA2')
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
         .get();
     setState(() {
-      name.text = (snap.data() as Map<String, dynamic>)['name'];
-      adharnumber.text = (snap.data() as Map<String, dynamic>)['adharnumber'];
       email.text = (snap.data() as Map<String, dynamic>)['email'];
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+      // adharnumber.text = (snap.data() as Map<String, dynamic>)['adharnumber'];
+
       age.text = (snap.data() as Map<String, dynamic>)['age'];
       address.text = (snap.data() as Map<String, dynamic>)['address'];
       phone.text = (snap.data() as Map<String, dynamic>)['phonenumber'];
@@ -265,7 +266,7 @@ class _MyProfileState extends State<MyProfile> {
                                     borderRadius: BorderRadius.circular(50)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text(adharnumber.text)),
+                                    child: Text(name.text)),
                               )
                             ],
                           )

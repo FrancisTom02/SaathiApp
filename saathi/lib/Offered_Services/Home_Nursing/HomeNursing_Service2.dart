@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -8,8 +9,67 @@ import 'package:saathi/views/HomePage1.dart';
 
 import 'package:stroke_text/stroke_text.dart';
 
-class Service_HomeNursing2 extends StatelessWidget {
-  const Service_HomeNursing2({super.key});
+class Service_HomeNursing2 extends StatefulWidget {
+  String id;
+
+  Service_HomeNursing2({super.key, required this.id});
+
+  @override
+  State<Service_HomeNursing2> createState() => _Service_HomeNursing2State();
+}
+
+class _Service_HomeNursing2State extends State<Service_HomeNursing2> {
+  TextEditingController name = TextEditingController();
+
+  TextEditingController gender = TextEditingController();
+
+  TextEditingController email = TextEditingController();
+
+  TextEditingController age = TextEditingController();
+
+  TextEditingController address = TextEditingController();
+
+  TextEditingController phone = TextEditingController();
+
+  TextEditingController guardianName = TextEditingController();
+
+  TextEditingController guardianRelation = TextEditingController();
+
+  TextEditingController guardianEmail = TextEditingController();
+
+  TextEditingController guardianPhone = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    getdoctor();
+
+    super.initState();
+  }
+
+  getdoctor() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+      gender.text = (snap.data() as Map<String, dynamic>)['gender'];
+      email.text = (snap.data() as Map<String, dynamic>)['email'];
+      age.text = (snap.data() as Map<String, dynamic>)['age'];
+      address.text = (snap.data() as Map<String, dynamic>)['address'];
+      phone.text = (snap.data() as Map<String, dynamic>)['phonenumber'];
+
+      guardianEmail.text =
+          (snap.data() as Map<String, dynamic>)['guardianEmail'];
+      guardianName.text = (snap.data() as Map<String, dynamic>)['guardianName'];
+      guardianPhone.text =
+          (snap.data() as Map<String, dynamic>)['guardianPhone'];
+      guardianRelation.text =
+          (snap.data() as Map<String, dynamic>)['guardianRelation'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +112,7 @@ class Service_HomeNursing2 extends StatelessWidget {
                 height: 20,
               ),
               StrokeText(
-                text: 'Dr. Francis Tom',
+                text: name.text,
                 textStyle: GoogleFonts.goldman(
                   fontSize: 30,
                   color: Colors.black,
@@ -147,7 +207,7 @@ MBBS from Govt. Medical College, Kottayam  '''),
                                   width: 150,
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),
-                                    child: Center(child: Text('21')),
+                                    child: Center(child: Text(age.text)),
                                   ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -170,7 +230,7 @@ MBBS from Govt. Medical College, Kottayam  '''),
                                   width: 150,
                                   child: Padding(
                                     padding: const EdgeInsets.all(10),
-                                    child: Center(child: Text('Male')),
+                                    child: Center(child: Text(gender.text)),
                                   ),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
@@ -219,7 +279,7 @@ MBBS from Govt. Medical College, Kottayam  '''),
                         width: 330,
                         child: Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Center(child: Text('+91-8891230510')),
+                          child: Center(child: Text(phone.text)),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
@@ -241,8 +301,7 @@ MBBS from Govt. Medical College, Kottayam  '''),
                         width: 330,
                         child: Padding(
                           padding: const EdgeInsets.all(10),
-                          child:
-                              Center(child: Text('francistom2024@cs.ajce.in')),
+                          child: Center(child: Text(email.text)),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),

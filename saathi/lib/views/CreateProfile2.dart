@@ -54,6 +54,7 @@ class _CreateProfile2State extends State<CreateProfile2> {
           .collection('volunteer')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .update({
+        "uid": FirebaseAuth.instance.currentUser!.uid,
         "name": name.text,
         "address": address.text,
         "phonenumber": phonenumber.text,

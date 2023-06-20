@@ -31,6 +31,11 @@ class _JoinServiceHomeServiceState extends State<JoinServiceHomeService> {
         .collection('homeservice')
         .doc()
         .set({'name': name});
+
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({'homeservice': 'true'});
   }
 
   @override

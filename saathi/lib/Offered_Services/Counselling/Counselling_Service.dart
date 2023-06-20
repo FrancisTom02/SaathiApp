@@ -17,212 +17,215 @@ class Service_Counselling extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      Get.to(const HomePage1());
+                    },
+                    icon: const Icon(Icons.arrow_back)),
+                const Align(
+                    alignment: AlignmentDirectional.topEnd,
+                    child: Image(image: AssetImage('asset/Banner1.png'))),
+              ],
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Container(
+              height: 50,
+              width: 400,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                      onPressed: () {
-                        Get.to(const HomePage1());
-                      },
-                      icon: const Icon(Icons.arrow_back)),
-                  const Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: Image(image: AssetImage('asset/Banner1.png'))),
-                ],
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Container(
-                height: 50,
-                width: 400,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
+                  Container(
+                    height: 40,
+                    width: 360,
+                    child: Container(
                       height: 40,
-                      width: 360,
-                      child: Container(
-                        height: 40,
-                        width: 180,
-                        child: Center(
-                          child: TextButton(
-                              onPressed: () {},
-                              child: Text(
-                                'COUNSELLING',
-                                style: GoogleFonts.goldman(
-                                    color: Colors.black,
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 3),
-                              )),
-                        ),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50)),
+                      width: 180,
+                      child: Center(
+                        child: TextButton(
+                            onPressed: () {},
+                            child: Text(
+                              'COUNSELLING',
+                              style: GoogleFonts.goldman(
+                                  color: Colors.black,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 3),
+                            )),
                       ),
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                      ),
+                          borderRadius: BorderRadius.circular(50)),
                     ),
-                  ],
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromRGBO(253, 165, 145, 1),
-                ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromRGBO(253, 165, 145, 1),
               ),
-              Expanded(
-                child: FutureBuilder(
-                  future: FirebaseFirestore.instance
-                      .collection('volunteer')
-                      .where('counselling', isEqualTo: 'true')
-                      .get(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView.separated(
-                        itemCount: (snapshot.data! as dynamic).docs.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            height: 200,
-                            width: 350,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
-                                children: [
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Container(
-                                          width: 125.0,
-                                          height: 125.0,
-                                          padding: const EdgeInsets.all(8.0),
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              border: Border.all(
-                                                  width: 2,
-                                                  color: Color.fromARGB(
-                                                      255, 255, 255, 255)),
-                                              image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: AssetImage(
-                                                      'asset/Counsellor/counsellor3.png')))),
-                                      Container(
-                                        height: 100,
-                                        width: 180,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 10),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              FittedBox(
-                                                fit: BoxFit.fitWidth,
-                                                child: Text(
-                                                  (snapshot.data! as dynamic)
-                                                      .docs[index]['name'],
-                                                  style: GoogleFonts.goldman(
-                                                      fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.w500),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                'bookings: 75',
-                                                style: GoogleFonts.goldman(
-                                                    fontSize: 15,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                              )
-                                            ],
-                                          ),
-                                        ),
+            ),
+            Expanded(
+              child: FutureBuilder(
+                future: FirebaseFirestore.instance
+                    .collection('volunteer')
+                    .where('counselling', isEqualTo: 'true')
+                    .get(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ListView.separated(
+                      itemCount: (snapshot.data! as dynamic).docs.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 200,
+                          width: 350,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Column(
+                              children: [
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                        width: 125.0,
+                                        height: 125.0,
+                                        padding: const EdgeInsets.all(8.0),
                                         decoration: BoxDecoration(
-                                          color: Color.fromARGB(
-                                              179, 255, 254, 254),
-                                          shape: BoxShape.rectangle,
-                                          border: Border.all(
-                                              width: 3,
-                                              color: Color.fromARGB(
-                                                  255, 255, 255, 255)),
+                                            shape: BoxShape.circle,
+                                            border: Border.all(
+                                                width: 2,
+                                                color: Color.fromARGB(
+                                                    255, 255, 255, 255)),
+                                            image: DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    'asset/Counsellor/counsellor3.png')))),
+                                    Container(
+                                      height: 100,
+                                      width: 180,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            FittedBox(
+                                              fit: BoxFit.fitWidth,
+                                              child: Text(
+                                                (snapshot.data! as dynamic)
+                                                    .docs[index]['name'],
+                                                style: GoogleFonts.goldman(
+                                                    fontSize: 25,
+                                                    fontWeight:
+                                                        FontWeight.w500),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              'bookings: 75',
+                                              style: GoogleFonts.goldman(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            )
+                                          ],
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 30,
+                                      decoration: BoxDecoration(
+                                        color:
+                                            Color.fromARGB(179, 255, 254, 254),
+                                        shape: BoxShape.rectangle,
+                                        border: Border.all(
+                                            width: 3,
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255)),
                                       ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: AlignmentDirectional.bottomEnd,
-                                    child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(50)),
+                                    ),
+                                    const SizedBox(
+                                      height: 30,
+                                    ),
+                                  ],
+                                ),
+                                Align(
+                                  alignment: AlignmentDirectional.bottomEnd,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
 
-                                          elevation: 0,
-                                          backgroundColor: const Color.fromARGB(
-                                              255,
-                                              255,
-                                              255,
-                                              255), // Background color
-                                        ),
-                                        onPressed: () {},
-                                        child: const Text(
-                                          'BOOK NOW',
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w800),
-                                        )),
-                                  )
-                                ],
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              boxShadow: const [
-                                BoxShadow(
-                                    blurRadius: 7,
-                                    spreadRadius: 1,
-                                    blurStyle: BlurStyle.outer)
+                                        elevation: 0,
+                                        backgroundColor: const Color.fromARGB(
+                                            255,
+                                            255,
+                                            255,
+                                            255), // Background color
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (ctx) =>
+                                                    Service_Counselling2(
+                                                        id: (snapshot.data!
+                                                                    as dynamic)
+                                                                .docs[index]
+                                                            ['uid'])));
+                                      },
+                                      child: const Text(
+                                        'BOOK NOW',
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.w800),
+                                      )),
+                                )
                               ],
-                              borderRadius: BorderRadius.circular(20),
-                              color: const Color.fromRGBO(253, 165, 145, 1),
                             ),
-                          );
-                        },
-                        separatorBuilder: (context, index) => const SizedBox(
-                              height: 20,
-                            ));
-                  },
-                ),
+                          ),
+                          decoration: BoxDecoration(
+                            boxShadow: const [
+                              BoxShadow(
+                                  blurRadius: 7,
+                                  spreadRadius: 1,
+                                  blurStyle: BlurStyle.outer)
+                            ],
+                            borderRadius: BorderRadius.circular(20),
+                            color: const Color.fromRGBO(253, 165, 145, 1),
+                          ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => const SizedBox(
+                            height: 20,
+                          ));
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -117,9 +117,9 @@ class Service_Consultancy extends StatelessWidget {
                                             shape: BoxShape.circle,
                                             border: Border.all(
                                                 width: 2,
-                                                color: Color.fromARGB(
+                                                color: const Color.fromARGB(
                                                     255, 255, 255, 255)),
-                                            image: DecorationImage(
+                                            image: const DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
                                                     'asset/Counsellor/counsellor3.png')))),
@@ -157,12 +157,12 @@ class Service_Consultancy extends StatelessWidget {
                                         ),
                                       ),
                                       decoration: BoxDecoration(
-                                        color:
-                                            Color.fromARGB(179, 255, 254, 254),
+                                        color: const Color.fromARGB(
+                                            179, 255, 254, 254),
                                         shape: BoxShape.rectangle,
                                         border: Border.all(
                                             width: 3,
-                                            color: Color.fromARGB(
+                                            color: const Color.fromARGB(
                                                 255, 255, 255, 255)),
                                       ),
                                     ),
@@ -186,7 +186,21 @@ class Service_Consultancy extends StatelessWidget {
                                             255,
                                             255), // Background color
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        // print('hi');
+                                        // print((snapshot.data! as dynamic)
+                                        //     .docs[index]['uid']);
+                                        // print('hello');
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (ctx) =>
+                                                    Service_Consultancy2(
+                                                        id: (snapshot.data!
+                                                                    as dynamic)
+                                                                .docs[index]
+                                                            ['uid'])));
+                                      },
                                       child: const Text(
                                         'BOOK NOW',
                                         style: TextStyle(

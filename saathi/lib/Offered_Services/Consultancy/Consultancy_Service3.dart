@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -11,7 +12,8 @@ import 'Consultancy_Service.dart';
 import 'Consultancy_Service2.dart';
 
 class Service_Consultancy3 extends StatefulWidget {
-  Service_Consultancy3({super.key});
+  String id;
+  Service_Consultancy3({super.key, required this.id});
 
   @override
   State<Service_Consultancy3> createState() => _Service_Consultancy3State();
@@ -19,6 +21,29 @@ class Service_Consultancy3 extends StatefulWidget {
 
 class _Service_Consultancy3State extends State<Service_Consultancy3> {
   bool checkedvalue = false;
+  TextEditingController name = TextEditingController();
+  storeconsultancydetails() async {}
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    getdoctor();
+
+    super.initState();
+  }
+
+  getdoctor() async {
+    print("akath ond");
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+    });
+    // setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +86,11 @@ class _Service_Consultancy3State extends State<Service_Consultancy3> {
                 height: 20,
               ),
               StrokeText(
-                text: 'Dr. Francis Tom',
+                text: name.text,
                 textStyle: GoogleFonts.goldman(
+                  fontSize: 30,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                   shadows: [
                     const Shadow(
                       blurRadius: 0,
@@ -70,9 +98,6 @@ class _Service_Consultancy3State extends State<Service_Consultancy3> {
                       offset: Offset(3, 2),
                     ),
                   ],
-                  fontSize: 30,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
                 ),
               ),
               SizedBox(
@@ -104,7 +129,7 @@ class _Service_Consultancy3State extends State<Service_Consultancy3> {
                                 borderRadius: BorderRadius.circular(50)),
                             child: TextButton(
                                 onPressed: () {
-                                  Get.to(Service_Consultancy2());
+                                  Get.to(Service_Consultancy2(id: widget.id));
                                 },
                                 child: Text(
                                   'Personal Info',
@@ -251,7 +276,9 @@ Sunday	            8:00 am - 8:00 pm
                       elevation: 8,
                       backgroundColor: Colors.white, // Background color
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      storeconsultancydetails();
+                    },
                     child: const Text(
                       'Book Now',
                       style: TextStyle(color: Colors.black, fontSize: 16),

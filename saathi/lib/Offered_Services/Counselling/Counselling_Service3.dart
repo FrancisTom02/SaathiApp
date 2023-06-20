@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -10,7 +11,8 @@ import 'package:saathi/Offered_Services/Counselling/Counselling_Service2.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class Service_Counselling3 extends StatefulWidget {
-  Service_Counselling3({super.key});
+  String id;
+  Service_Counselling3({super.key, required this.id});
 
   @override
   State<Service_Counselling3> createState() => _Service_Counselling3State();
@@ -18,6 +20,27 @@ class Service_Counselling3 extends StatefulWidget {
 
 class _Service_Counselling3State extends State<Service_Counselling3> {
   bool checkedvalue = false;
+
+  TextEditingController name = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    getdoctor();
+
+    super.initState();
+  }
+
+  getdoctor() async {
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +83,7 @@ class _Service_Counselling3State extends State<Service_Counselling3> {
                 height: 20,
               ),
               StrokeText(
-                text: 'Dr. Francis Tom',
+                text: name.text,
                 textStyle: GoogleFonts.goldman(
                   shadows: [
                     const Shadow(
@@ -103,7 +126,7 @@ class _Service_Counselling3State extends State<Service_Counselling3> {
                                 borderRadius: BorderRadius.circular(50)),
                             child: TextButton(
                                 onPressed: () {
-                                  Get.to(Service_Counselling2());
+                                  Get.to(Service_Counselling2(id: widget.id));
                                 },
                                 child: Text(
                                   'Personal Info',

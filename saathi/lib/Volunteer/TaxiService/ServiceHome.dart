@@ -7,37 +7,18 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
+import 'package:saathi/Volunteer/Counselling/ServiceDetails.dart';
 import 'package:saathi/Volunteer/Volunteer_HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class JoinServiceMedicalRun extends StatefulWidget {
-  const JoinServiceMedicalRun({super.key});
+class TaxiServicePage1 extends StatefulWidget {
+  const TaxiServicePage1({super.key});
 
   @override
-  State<JoinServiceMedicalRun> createState() => _JoinServiceMedicalRunState();
+  State<TaxiServicePage1> createState() => _TaxiServicePage1State();
 }
 
-class _JoinServiceMedicalRunState extends State<JoinServiceMedicalRun> {
-  join() async {
-    DocumentSnapshot snapshot = await FirebaseFirestore.instance
-        .collection('volunteer')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .get();
-    String name = (snapshot.data() as Map<String, dynamic>)['name'];
-
-    await FirebaseFirestore.instance
-        .collection('volunteer')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('medicalrun')
-        .doc()
-        .set({'name': name});
-
-    await FirebaseFirestore.instance
-        .collection('volunteer')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .update({'medicalrun': 'true'});
-  }
-
+class _TaxiServicePage1State extends State<TaxiServicePage1> {
   @override
   Widget build(BuildContext context) {
     List<String> sampleImages = [
@@ -54,25 +35,12 @@ class _JoinServiceMedicalRunState extends State<JoinServiceMedicalRun> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    height: 100,
-                    width: 300,
-                    child: Column(
-                      children: [
-                        Align(
-                          alignment: AlignmentDirectional.centerStart,
-                          child: IconButton(
-                              onPressed: () {
-                                Get.to(VolunteerHomePage1());
-                              },
-                              icon: Icon(Icons.arrow_back)),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const Align(
-                      alignment: AlignmentDirectional.topEnd,
-                      child: Image(image: AssetImage('asset/Banner1.png'))),
+                  IconButton(
+                      onPressed: () {
+                        Get.to(VolunteerHomePage1());
+                      },
+                      icon: Icon(Icons.arrow_back)),
+                  Image(image: AssetImage('asset/Banner1.png')),
                 ],
               ),
               SizedBox(
@@ -81,7 +49,7 @@ class _JoinServiceMedicalRunState extends State<JoinServiceMedicalRun> {
               Align(
                 alignment: AlignmentDirectional.bottomCenter,
                 child: StrokeText(
-                    text: 'Medical Run',
+                    text: 'Taxi Service',
                     textStyle: GoogleFonts.goldman(
                         shadows: [
                           const Shadow(
@@ -212,54 +180,6 @@ class _JoinServiceMedicalRunState extends State<JoinServiceMedicalRun> {
                     ],
                   )
                 ],
-              ),
-              const SizedBox(
-                height: 60,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60),
-                child: Text(
-                  '''       *Join As  a Service Provider*''',
-                  style: GoogleFonts.goldman(
-                      fontWeight: FontWeight.w600, fontSize: 25),
-                ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Text(
-                  '''Join our community and gain recognition by offering your most valuable services !''',
-                  style: GoogleFonts.goldman(
-                      fontWeight: FontWeight.w400, fontSize: 20),
-                ),
-              ),
-              SizedBox(
-                height: 100,
-              ),
-              SizedBox(
-                height: 35,
-                width: 150,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      shadowColor: Color.fromARGB(255, 255, 255, 255),
-                      elevation: 8,
-                      backgroundColor: const Color.fromRGBO(
-                          253, 165, 145, 1), // Background color
-                    ),
-                    onPressed: () {
-                      join();
-                      // Get.to(CounselingDetails());
-                    },
-                    child: const StrokeText(
-                      text: 'Join Now',
-                      textStyle: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20),
-                    )),
               ),
               SizedBox(
                 height: 70,

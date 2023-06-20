@@ -8,6 +8,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
+import 'package:saathi/Volunteer/Consultancy/ServiceHome.dart';
 import 'package:saathi/Volunteer/Volunteer_HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -253,6 +254,7 @@ class _JoinServiceConsultancyState extends State<JoinServiceConsultancy> {
                     ),
                     onPressed: () {
                       join();
+                      Get.to(ConsultancyServicePage1());
                     },
                     child: const StrokeText(
                       text: 'Join Now',

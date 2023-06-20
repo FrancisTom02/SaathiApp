@@ -32,6 +32,11 @@ class _JoinServiceTaxiServiceState extends State<JoinServiceTaxiService> {
         .collection('taxiservice')
         .doc()
         .set({'name': name});
+
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .update({'taxiservice': 'true'});
   }
 
   @override
