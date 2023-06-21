@@ -184,7 +184,9 @@ class Service_Taxi extends StatelessWidget {
                                             255,
                                             255), // Background color
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.to(Service_Taxi2());
+                                      },
                                       child: const Text(
                                         'BOOK NOW',
                                         style: TextStyle(

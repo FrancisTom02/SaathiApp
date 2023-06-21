@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -22,7 +23,35 @@ class Service_Consultancy3 extends StatefulWidget {
 class _Service_Consultancy3State extends State<Service_Consultancy3> {
   bool checkedvalue = false;
   TextEditingController name = TextEditingController();
-  storeconsultancydetails() async {}
+  storeconsultancydetails() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('consultancy-data')
+        .doc()
+        .set({
+      'consultant-name': name.text,
+      'consultant-id': widget.id,
+      'status': 'pending',
+      'service': 'Consultancy'
+    });
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    String uname = (snap.data() as Map<String, dynamic>)['name'];
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .collection('booking-data')
+        .doc()
+        .set({
+      'user-name': uname,
+      'status': 'pending',
+      'user-id': FirebaseAuth.instance.currentUser!.uid,
+      'service': 'Consultancy'
+    });
+  }
 
   @override
   void initState() {

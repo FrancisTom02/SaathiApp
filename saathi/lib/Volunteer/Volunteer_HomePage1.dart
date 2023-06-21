@@ -25,6 +25,7 @@ import 'package:saathi/Volunteer/HomeNursing/ServiceHome.dart';
 import 'package:saathi/Volunteer/HomeService/JoinServicePage.dart';
 import 'package:saathi/Volunteer/MedicalRun/JoinServicePage.dart';
 import 'package:saathi/Volunteer/MyProfile1.dart';
+import 'package:saathi/Volunteer/Status_Widget.dart';
 import 'package:saathi/Volunteer/TaxiService/JoinServicePage.dart';
 import 'package:saathi/Volunteer/TaxiService/ServiceHome.dart';
 import 'package:stroke_text/stroke_text.dart';
@@ -240,7 +241,9 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
                       TextButton(
                           style: TextButton.styleFrom(
                               primary: const Color.fromRGBO(168, 107, 93, 1)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(ServiceStatusWidget1());
+                          },
                           child: const Text('Status'))
                     ],
                   ),
