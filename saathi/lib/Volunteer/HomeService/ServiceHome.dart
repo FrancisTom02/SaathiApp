@@ -11,22 +11,21 @@ import 'package:saathi/Volunteer/Counselling/ServiceDetails.dart';
 import 'package:saathi/Volunteer/Volunteer_HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class CounsellingServicePage1 extends StatefulWidget {
-  const CounsellingServicePage1({super.key});
+class HomeServicePage1 extends StatefulWidget {
+  const HomeServicePage1({super.key});
 
   @override
-  State<CounsellingServicePage1> createState() =>
-      _CounsellingServicePage1State();
+  State<HomeServicePage1> createState() => _HomeServicePage1State();
 }
 
-class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
+class _HomeServicePage1State extends State<HomeServicePage1> {
   acceptbooking(String id) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection('volunteer')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('booking-data')
         .where('user-id', isEqualTo: id)
-        .where('service', isEqualTo: 'Counselling')
+        .where('service', isEqualTo: 'HomeService')
         .where('status', isEqualTo: 'pending')
         .get();
     String uid = querySnapshot.docs[0].id;
@@ -45,15 +44,15 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
     QuerySnapshot query2 = await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .collection('counselling-data')
-        .where('counsellor-id', isEqualTo: vid)
-        .where('counsellor-name', isEqualTo: vname)
+        .collection('homeservice-data')
+        .where('assistant-id', isEqualTo: vid)
+        .where('assistant-name', isEqualTo: vname)
         .get();
     String uid1 = query2.docs[0].id;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .collection('counselling-data')
+        .collection('homeservice-data')
         .doc(uid1)
         .update({'status': 'accepted'});
     setState(() {});
@@ -65,7 +64,7 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('booking-data')
         .where('user-id', isEqualTo: id)
-        .where('service', isEqualTo: 'Counselling')
+        .where('service', isEqualTo: 'HomeService')
         .where('status', isEqualTo: 'pending')
         .get();
     String uid = querySnapshot.docs[0].id;
@@ -84,15 +83,15 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
     QuerySnapshot query2 = await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .collection('counselling-data')
-        .where('counsellor-id', isEqualTo: vid)
-        .where('counsellor-name', isEqualTo: vname)
+        .collection('homeservice-data')
+        .where('assistant-id', isEqualTo: vid)
+        .where('assistant-name', isEqualTo: vname)
         .get();
     String uid1 = query2.docs[0].id;
     await FirebaseFirestore.instance
         .collection('users')
         .doc(id)
-        .collection('counselling-data')
+        .collection('homeservice-data')
         .doc(uid1)
         .delete();
     setState(() {});
@@ -127,7 +126,7 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
             Align(
               alignment: AlignmentDirectional.bottomCenter,
               child: StrokeText(
-                  text: 'Counselling',
+                  text: 'Home Service',
                   textStyle: GoogleFonts.goldman(
                       shadows: [
                         const Shadow(
@@ -166,19 +165,7 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
               ),
             ),
             SizedBox(
-              height: 50,
-            ),
-            Row(
-              children: [
-                Text(
-                  'Requested Services',
-                  style: GoogleFonts.goldman(fontSize: 15),
-                ),
-                Icon(
-                  Icons.arrow_drop_down_outlined,
-                  size: 40,
-                )
-              ],
+              height: 40,
             ),
             SizedBox(
               height: 70,
@@ -190,7 +177,7 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
                     .doc(FirebaseAuth.instance.currentUser!.uid)
                     .collection('booking-data')
                     .where('status', isEqualTo: 'pending')
-                    .where('service', isEqualTo: 'Counselling')
+                    .where('service', isEqualTo: 'HomeService')
                     .get(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -301,7 +288,7 @@ class _CounsellingServicePage1State extends State<CounsellingServicePage1> {
                           ));
                 },
               ),
-            )
+            ),
           ])),
     ));
   }

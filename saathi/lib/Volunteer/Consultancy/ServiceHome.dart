@@ -26,6 +26,8 @@ class _ConsultancyServicePage1State extends State<ConsultancyServicePage1> {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('booking-data')
         .where('user-id', isEqualTo: id)
+        .where('service', isEqualTo: 'Consultancy')
+        .where('status', isEqualTo: 'pending')
         .get();
     String uid = querySnapshot.docs[0].id;
     DocumentSnapshot snap = await FirebaseFirestore.instance
@@ -54,6 +56,45 @@ class _ConsultancyServicePage1State extends State<ConsultancyServicePage1> {
         .collection('consultancy-data')
         .doc(uid1)
         .update({'status': 'accepted'});
+    setState(() {});
+  }
+
+  cancelbooking(String id) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('booking-data')
+        .where('user-id', isEqualTo: id)
+        .where('service', isEqualTo: 'Consultancy')
+        .where('status', isEqualTo: 'pending')
+        .get();
+    String uid = querySnapshot.docs[0].id;
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    String vname = (snap.data() as Map<String, dynamic>)['name'];
+    String vid = (snap.data() as Map<String, dynamic>)['uid'];
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('booking-data')
+        .doc(uid)
+        .delete();
+    QuerySnapshot query2 = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .collection('consultancy-data')
+        .where('consultant-id', isEqualTo: vid)
+        .where('consultant-name', isEqualTo: vname)
+        .get();
+    String uid1 = query2.docs[0].id;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(id)
+        .collection('consultancy-data')
+        .doc(uid1)
+        .delete();
     setState(() {});
   }
 
@@ -241,19 +282,85 @@ class _ConsultancyServicePage1State extends State<ConsultancyServicePage1> {
                         return Container(
                           height: 50,
                           width: 350,
-                          child: Row(
-                            children: [
-                              Text((snapshot.data! as dynamic).docs[index]
-                                  ['user-name']),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    acceptbooking((snapshot.data! as dynamic)
-                                        .docs[index]['user-id']);
-                                  },
-                                  child: Text("Accept")),
-                              ElevatedButton(
-                                  onPressed: () {}, child: Text("Decline"))
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  (snapshot.data! as dynamic).docs[index]
+                                      ['user-name'],
+                                  style: GoogleFonts.goldman(),
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                // ElevatedButton(
+                                //     onPressed: () {
+                                //       acceptbooking((snapshot.data! as dynamic)
+                                //           .docs[index]['user-id']);
+                                //       print('entered');
+                                //     },
+                                //     child: Text("Accept")),
+                                SizedBox(
+                                  height: 25,
+                                  width: 80,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        shadowColor: const Color.fromRGBO(
+                                            253, 165, 145, 1),
+                                        elevation: 8,
+                                        backgroundColor:
+                                            Colors.white, // Background color
+                                      ),
+                                      onPressed: () {
+                                        acceptbooking(
+                                            (snapshot.data! as dynamic)
+                                                .docs[index]['user-id']);
+                                        print('entered');
+                                      },
+                                      child: const Text(
+                                        'Accept',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 64, 164, 77),
+                                            fontSize: 14),
+                                      )),
+                                ),
+                                // ElevatedButton(
+                                //     onPressed: () {}, child: Text("Decline")),
+                                SizedBox(
+                                  height: 25,
+                                  width: 80,
+                                  child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        shadowColor: const Color.fromRGBO(
+                                            253, 165, 145, 1),
+                                        elevation: 8,
+                                        backgroundColor:
+                                            Colors.white, // Background color
+                                      ),
+                                      onPressed: () {
+                                        cancelbooking(
+                                            (snapshot.data! as dynamic)
+                                                .docs[index]['user-id']);
+                                      },
+                                      child: const Text(
+                                        'Decline',
+                                        style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 165, 44, 44),
+                                            fontSize: 14),
+                                      )),
+                                ),
+                              ],
+                            ),
                           ),
                           decoration: BoxDecoration(
                             boxShadow: const [

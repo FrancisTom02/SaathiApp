@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -10,7 +12,8 @@ import 'package:saathi/views/HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 class Service_Taxi3 extends StatefulWidget {
-  Service_Taxi3({super.key});
+  String id;
+  Service_Taxi3({super.key, required this.id});
 
   @override
   State<Service_Taxi3> createState() => _Service_Taxi3State();
@@ -18,6 +21,58 @@ class Service_Taxi3 extends StatefulWidget {
 
 class _Service_Taxi3State extends State<Service_Taxi3> {
   bool checkedvalue = false;
+
+  TextEditingController name = TextEditingController();
+  storetaxidetails() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('taxiservice-data')
+        .doc()
+        .set({
+      'driver-name': name.text,
+      'driver-id': widget.id,
+      'status': 'pending',
+      'service': 'TaxiService'
+    });
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    String uname = (snap.data() as Map<String, dynamic>)['name'];
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .collection('booking-data')
+        .doc()
+        .set({
+      'user-name': uname,
+      'status': 'pending',
+      'user-id': FirebaseAuth.instance.currentUser!.uid,
+      'service': 'TaxiService'
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    getdoctor();
+
+    super.initState();
+  }
+
+  getdoctor() async {
+    print("akath ond");
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+    });
+    // setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +158,7 @@ class _Service_Taxi3State extends State<Service_Taxi3> {
                                 borderRadius: BorderRadius.circular(50)),
                             child: TextButton(
                                 onPressed: () {
-                                  Get.to(Service_Taxi2());
+                                  Get.to(Service_Taxi2(id: widget.id));
                                 },
                                 child: Text(
                                   'Personal Info',
@@ -250,7 +305,9 @@ Sunday	            8:00 am - 8:00 pm
                       elevation: 8,
                       backgroundColor: Colors.white, // Background color
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      storetaxidetails();
+                    },
                     child: const Text(
                       'Book Now',
                       style: TextStyle(color: Colors.black, fontSize: 16),

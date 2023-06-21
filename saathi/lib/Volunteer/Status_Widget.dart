@@ -155,6 +155,9 @@ class _ServiceStatusWidget1State extends State<ServiceStatusWidget1> {
               ],
             ),
             SizedBox(
+              height: 20,
+            ),
+            SizedBox(
                 height: 50,
                 child: Align(
                     alignment: AlignmentDirectional.topStart,
@@ -181,14 +184,33 @@ class _ServiceStatusWidget1State extends State<ServiceStatusWidget1> {
                         return Container(
                           height: 50,
                           width: 350,
-                          child: Row(
-                            children: [
-                              Text((snapshot.data! as dynamic).docs[index]
-                                  ['user-name']),
-                              Text((snapshot.data! as dynamic).docs[index]
-                                  ['service']),
-                              Text('Completed')
-                            ],
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  (snapshot.data! as dynamic).docs[index]
+                                      ['user-name'],
+                                  style: GoogleFonts.goldman(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(
+                                  (snapshot.data! as dynamic).docs[index]
+                                      ['service'],
+                                  style: GoogleFonts.goldman(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                StrokeText(
+                                  strokeWidth: .6,
+                                  text: 'Accepted',
+                                  textStyle: TextStyle(
+                                      color: Color.fromARGB(255, 54, 133, 57)),
+                                )
+                              ],
+                            ),
                           ),
                           decoration: BoxDecoration(
                             boxShadow: const [

@@ -23,6 +23,7 @@ import 'package:saathi/Volunteer/HomeNursing/JoinServicePage.dart';
 import 'package:saathi/Volunteer/HomeNursing/ServiceDetails.dart';
 import 'package:saathi/Volunteer/HomeNursing/ServiceHome.dart';
 import 'package:saathi/Volunteer/HomeService/JoinServicePage.dart';
+import 'package:saathi/Volunteer/HomeService/ServiceHome.dart';
 import 'package:saathi/Volunteer/MedicalRun/JoinServicePage.dart';
 import 'package:saathi/Volunteer/MyProfile1.dart';
 import 'package:saathi/Volunteer/Status_Widget.dart';
@@ -106,7 +107,7 @@ class _VolunteerHomePage1State extends State<VolunteerHomePage1> {
     if (querySnapshot.size == 0) {
       Get.to(JoinServiceHomeService());
     } else {
-      Get.to(JoinServiceHomeService());
+      Get.to(HomeServicePage1());
     }
   }
 

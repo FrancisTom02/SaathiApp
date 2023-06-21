@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -9,8 +10,46 @@ import 'package:saathi/Offered_Services/Taxi_Service/Taxi_Service3.dart';
 
 import 'package:stroke_text/stroke_text.dart';
 
-class Service_Taxi2 extends StatelessWidget {
-  const Service_Taxi2({super.key});
+class Service_Taxi2 extends StatefulWidget {
+  String id;
+  Service_Taxi2({super.key, required this.id});
+
+  @override
+  State<Service_Taxi2> createState() => _Service_Taxi2State();
+}
+
+class _Service_Taxi2State extends State<Service_Taxi2> {
+  TextEditingController name = TextEditingController();
+  TextEditingController gender = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController address = TextEditingController();
+  TextEditingController phone = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    getdoctor();
+
+    super.initState();
+  }
+
+  getdoctor() async {
+    print("akath ond");
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .get();
+    setState(() {
+      name.text = (snap.data() as Map<String, dynamic>)['name'];
+      gender.text = (snap.data() as Map<String, dynamic>)['gender'];
+      email.text = (snap.data() as Map<String, dynamic>)['email'];
+      age.text = (snap.data() as Map<String, dynamic>)['age'];
+      address.text = (snap.data() as Map<String, dynamic>)['address'];
+      phone.text = (snap.data() as Map<String, dynamic>)['phonenumber'];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +141,7 @@ class Service_Taxi2 extends StatelessWidget {
                             width: 180,
                             child: TextButton(
                                 onPressed: () {
-                                  Get.to(Service_Taxi3());
+                                  Get.to(Service_Taxi3(id: widget.id));
                                 },
                                 child: Text(
                                   'Booking',

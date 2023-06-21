@@ -185,7 +185,13 @@ class Service_Taxi extends StatelessWidget {
                                             255), // Background color
                                       ),
                                       onPressed: () {
-                                        Get.to(Service_Taxi2());
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (ctx) => Service_Taxi2(
+                                                    id: (snapshot.data!
+                                                            as dynamic)
+                                                        .docs[index]['uid'])));
                                       },
                                       child: const Text(
                                         'BOOK NOW',

@@ -7,6 +7,7 @@ import 'package:get/get_core/get_core.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
+import 'package:saathi/Volunteer/HomeService/ServiceDetails.dart';
 import 'package:saathi/Volunteer/Volunteer_HomePage1.dart';
 import 'package:stroke_text/stroke_text.dart';
 
@@ -252,7 +253,7 @@ class _JoinServiceHomeServiceState extends State<JoinServiceHomeService> {
                     ),
                     onPressed: () {
                       join();
-                      // Get.to(CounselingDetails());
+                      Get.to(HomeServiceDetails());
                     },
                     child: const StrokeText(
                       text: 'Join Now',

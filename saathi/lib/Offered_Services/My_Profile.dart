@@ -367,12 +367,12 @@ class _MyProfileState extends State<MyProfile> {
                       height: 10,
                     ),
                     Container(
-                      height: 80,
+                      height: 120,
                       width: 350,
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -383,13 +383,17 @@ class _MyProfileState extends State<MyProfile> {
                               ),
                               Container(
                                 width: 200,
-                                height: 30,
+                                height: 80,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50)),
+                                    borderRadius: BorderRadius.circular(30)),
                                 child: Align(
                                     alignment: AlignmentDirectional.center,
-                                    child: Text(address.text)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: Text(address.text),
+                                    )),
                               )
                             ],
                           ),

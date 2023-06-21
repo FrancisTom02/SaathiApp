@@ -29,7 +29,10 @@ class _Service_Counselling2State extends State<Service_Counselling2> {
   TextEditingController guardianName = TextEditingController();
   TextEditingController guardianRelation = TextEditingController();
   TextEditingController guardianEmail = TextEditingController();
+  TextEditingController qualificationcontroller = TextEditingController();
   TextEditingController guardianPhone = TextEditingController();
+  TextEditingController specialitycontroller = TextEditingController();
+  TextEditingController institutioncontroller = TextEditingController();
 
   @override
   void initState() {
@@ -60,6 +63,21 @@ class _Service_Counselling2State extends State<Service_Counselling2> {
           (snap.data() as Map<String, dynamic>)['guardianPhone'];
       guardianRelation.text =
           (snap.data() as Map<String, dynamic>)['guardianRelation'];
+    });
+    QuerySnapshot snap1 = await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .collection('counselling')
+        .get();
+    DocumentSnapshot snap2 = snap1.docs[0];
+    print((snap2.data() as Map<String, dynamic>)['proqualf']);
+    setState(() {
+      qualificationcontroller.text =
+          (snap2.data() as Map<String, dynamic>)['proqualf'];
+      specialitycontroller.text =
+          (snap2.data() as Map<String, dynamic>)['speciality'];
+      institutioncontroller.text =
+          (snap2.data() as Map<String, dynamic>)['institution'];
     });
   }
 
@@ -195,15 +213,17 @@ class _Service_Counselling2State extends State<Service_Counselling2> {
                         height: 10,
                       ),
                       Container(
-                        padding: EdgeInsets.all(20),
+                        height: 40,
+                        width: 330,
                         decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
-                        constraints: const BoxConstraints(
-                          maxWidth: 330,
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color.fromRGBO(255, 255, 255, 1),
                         ),
-                        child: const Text(''' BA Psychology 
- MSc Psychology Amity University Noida'''),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child:
+                              Center(child: Text(qualificationcontroller.text)),
+                        ),
                       ),
                       SizedBox(
                         height: 20,
@@ -224,7 +244,7 @@ class _Service_Counselling2State extends State<Service_Counselling2> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Center(child: Text('geriatric Counsellor')),
+                          child: Center(child: Text(specialitycontroller.text)),
                         ),
                       ),
                       SizedBox(
@@ -242,9 +262,8 @@ class _Service_Counselling2State extends State<Service_Counselling2> {
                         width: 330,
                         child: Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Center(
-                              child: Text(
-                                  'Lmonk Educational And Training Solutions Pvt Ltd')),
+                          child:
+                              Center(child: Text(institutioncontroller.text)),
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),

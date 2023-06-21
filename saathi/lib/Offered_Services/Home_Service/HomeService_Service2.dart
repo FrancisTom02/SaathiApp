@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -29,6 +30,36 @@ class _Service_HomeService2State extends State<Service_HomeService2> {
   TextEditingController guardianRelation = TextEditingController();
   TextEditingController guardianEmail = TextEditingController();
   TextEditingController guardianPhone = TextEditingController();
+
+  storehomeservicedetails() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('homeservice-data')
+        .doc()
+        .set({
+      'assistant-name': name.text,
+      'assistant-id': widget.id,
+      'status': 'pending',
+      'service': 'HomeService'
+    });
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    String uname = (snap.data() as Map<String, dynamic>)['name'];
+    await FirebaseFirestore.instance
+        .collection('volunteer')
+        .doc(widget.id)
+        .collection('booking-data')
+        .doc()
+        .set({
+      'user-name': uname,
+      'status': 'pending',
+      'user-id': FirebaseAuth.instance.currentUser!.uid,
+      'service': 'HomeService'
+    });
+  }
 
   @override
   void initState() {
@@ -358,7 +389,9 @@ Sunday	            8:00 am - 8:00 pm
                       elevation: 8,
                       backgroundColor: Colors.white, // Background color
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      storehomeservicedetails();
+                    },
                     child: const Text(
                       'Book Now',
                       style: TextStyle(color: Colors.black, fontSize: 12),

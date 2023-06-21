@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
@@ -13,6 +14,7 @@ import 'package:saathi/Offered_Services/Status_Widget.dart';
 import 'package:saathi/Offered_Services/Support_Widget.dart';
 import 'package:saathi/Offered_Services/Taxi_Service/Taxi_Service.dart';
 import 'package:saathi/Volunteer/HomeNursing/JoinServicePage.dart';
+import 'package:saathi/views/LoginPage.dart';
 import 'package:stroke_text/stroke_text.dart';
 
 import '../Offered_Services/Consultancy/Consultancy_Service.dart';
@@ -39,7 +41,14 @@ class HomePage1 extends StatelessWidget {
                         Align(
                           alignment: AlignmentDirectional.centerStart,
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                // Navigator.pushAndRemoveUntil(MaterialPageRoute(builder: (ctx)=> LoginPage();), (route) => false)
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (ctx) => LoginPage()),
+                                    (route) => false);
+                              },
                               icon: Icon(Icons.logout_outlined)),
                         ),
                         Align(

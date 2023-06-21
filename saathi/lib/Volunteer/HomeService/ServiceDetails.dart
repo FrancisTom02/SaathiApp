@@ -1,63 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:saathi/Volunteer/Counselling/ServiceHome.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-class CounselingDetails extends StatefulWidget {
-  const CounselingDetails({super.key});
+class HomeServiceDetails extends StatefulWidget {
+  const HomeServiceDetails({super.key});
 
   @override
-  State<CounselingDetails> createState() => _CounselingDetailsState();
+  State<HomeServiceDetails> createState() => _HomeServiceDetailsState();
 }
 
-class _CounselingDetailsState extends State<CounselingDetails> {
-  TextEditingController designation = TextEditingController();
-  TextEditingController proqualf = TextEditingController();
-  TextEditingController phonenumber = TextEditingController();
-  TextEditingController institution = TextEditingController();
-  TextEditingController specialty = TextEditingController();
-  TextEditingController age = TextEditingController();
-
-  void updates() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('volunteer')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('counselling')
-        .get();
-    String uid = querySnapshot.docs[0].id;
-
-    await FirebaseFirestore.instance
-        .collection('volunteer')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('counselling')
-        .doc(uid)
-        .update({
-      "designation": designation.text,
-      "proqualf": proqualf.text,
-      "designation": designation.text,
-      "phone2": phonenumber.text,
-      "institution": institution.text,
-      "speciality": specialty.text,
-    });
-
-    // await FirebaseFirestore.instance
-    //     .collection('volunteer')
-    //     .doc(FirebaseAuth.instance.currentUser!.uid)
-    //     .collection('counselling')
-    //     .doc()
-    //     .update({
-    //   "designation": designation.text,
-    //   "proqualf": proqualf.text,
-    //   "designation": designation.text,
-    //   "phone2": phonenumber.text,
-    //   "institution": institution.text,
-    //   "speciality": specialty.text,
-    // });
-  }
-
+class _HomeServiceDetailsState extends State<HomeServiceDetails> {
   @override
   Widget build(context) {
     return Scaffold(
@@ -115,7 +67,7 @@ class _CounselingDetailsState extends State<CounselingDetails> {
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 40, right: 200),
-                  child: Text('Designation',
+                  child: Text('Phone',
                       style: GoogleFonts.goldman(
                           fontSize: 15,
                           color: Color.fromARGB(255, 73, 69, 69))),
@@ -123,7 +75,6 @@ class _CounselingDetailsState extends State<CounselingDetails> {
                 Padding(
                   padding: const EdgeInsets.only(right: 30, left: 30),
                   child: TextFormField(
-                    controller: designation,
                     maxLines: 1,
                     decoration: InputDecoration(
                         filled: true,
@@ -136,6 +87,86 @@ class _CounselingDetailsState extends State<CounselingDetails> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20, right: 100),
+                  child: Text('Experience',
+                      style: GoogleFonts.goldman(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 73, 69, 69))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        fillColor: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 200),
+                  child: Text('Organization',
+                      style: GoogleFonts.goldman(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 73, 69, 69))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        fillColor: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 200),
+                  child: Text('License',
+                      style: GoogleFonts.goldman(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 73, 69, 69))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        fillColor: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 200),
+                  child: Text('Category',
+                      style: GoogleFonts.goldman(
+                          fontSize: 15,
+                          color: Color.fromARGB(255, 73, 69, 69))),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: InputDecoration(
+                        filled: true,
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: Colors.black),
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        fillColor: Colors.white),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, right: 200),
                   child: Text('Professional Qualification',
                       style: GoogleFonts.goldman(
                           fontSize: 15,
@@ -144,70 +175,6 @@ class _CounselingDetailsState extends State<CounselingDetails> {
                 Padding(
                   padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
                   child: TextFormField(
-                    controller: proqualf,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        fillColor: Colors.white),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, right: 200),
-                  child: Text('Speciality',
-                      style: GoogleFonts.goldman(
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 73, 69, 69))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
-                  child: TextFormField(
-                    controller: specialty,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        fillColor: Colors.white),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, right: 200),
-                  child: Text('Institution',
-                      style: GoogleFonts.goldman(
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 73, 69, 69))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
-                  child: TextFormField(
-                    controller: institution,
-                    maxLines: 1,
-                    decoration: InputDecoration(
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1, color: Colors.black),
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        fillColor: Colors.white),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, right: 200),
-                  child: Text('Phone No',
-                      style: GoogleFonts.goldman(
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 73, 69, 69))),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, right: 30, left: 30),
-                  child: TextFormField(
-                    controller: phonenumber,
                     maxLines: 1,
                     decoration: InputDecoration(
                         filled: true,
@@ -567,10 +534,7 @@ class _CounselingDetailsState extends State<CounselingDetails> {
           SizedBox(height: 30),
           SizedBox(
             child: ElevatedButton(
-              onPressed: () {
-                updates();
-                Get.to(CounsellingServicePage1());
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 side: BorderSide(width: 2),
                 backgroundColor: Color.fromRGBO(253, 165, 145, 1),
